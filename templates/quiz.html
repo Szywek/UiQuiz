@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quiz</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <script src="{{ url_for('static', filename='js/scripts.js') }}" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/jsframe.js/lib/jsframe.min.js"></script>
+
+</head>
+<body>
+    <div id="round-counter">
+        Runda: <span id="currentRound">0</span> / <span id="totalRounds">0</span>
+    </div>
+    <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo Quizu" id="quiz-logo">
+    <h1>UiQuiz</h1>
+    <p id="know-result"></p>
+
+    <audio id="audioPlayer" controls style="display: none;"></audio>
+
+    <div id="history-panel" style="display: none;">
+        <h3>Co słuchaliśmy: </h3>
+        <div id="history-content" style="overflow-y: auto; height: calc(100% - 50px);">
+            <p>Brak danych do wyświetlenia</p>
+        </div>
+    </div>
+    <button id="btn-back" style="position: fixed; left: 20px; top: 20px; z-index: 1000;">
+        Powrót
+    </button>
+
+   <div id="details" style="display:none;">
+        <h3>Na grzale:</h3>
+        <p id="animeJPName"></p>
+        <p id="songName"></p>
+        <p id="songArtist"></p>
+        <p id="songType"></p>
+        <p id="animeVintage"></p>
+    </div>
+
+            <div id="button-panel">
+                <button id="btn-next">Start</button>
+                <button id="btn-dont-know">Nie wiem</button>
+                <button id="btn-know-plus">Wiem za 2</button>
+                <button id="btn-know">Wiem</button>
+                <button id="btn-replay">Powtórz</button>
+                <button id="btn-show">Pokaż</button>
+            </div>
+
+<button id="btn-toggle-history" style="position: fixed; right: 0; top: 20px; z-index: 1000;">
+    Historia
+</button>
+
+    <div id="click-counters">
+        <span style="padding: 5px; font-size:15px;">Źle: <span style="color: #e60000;" id="dontKnowCounter">0</span></span>
+        <span style="padding: 5px; font-size:15px;">Za dwa: <span style="color: #eacb00;" id="knowPlusCounter">0</span></span>
+        <span style="padding: 5px; font-size:15px;">Dobrze: <span style="color: #0ed600;" id="knowCounter">0</span></span>
+        <br>
+        <span>Pijemy!: <span style="color: #e40000;" id="drinkCounter">0</span></span>
+        <span>Nie Pijemy!: <span style="color: #0ed400;" id="noDrinkCounter">0</span></span>
+    </div>
+
+    <div>
+        <label for="fragmentLength">Długość utworu:</label>
+        <input
+            type="range"
+            id="fragmentLength"
+            name="fragmentLength"
+            min="1"
+            max="50"
+            value="15">
+        <span id="fragmentLengthValue">15</span> s
+    </div>
+
+    <div>
+        <label for="volumeControl">Głośność:</label>
+        <input
+            type="range"
+            id="volumeControl"
+            name="volumeControl"
+            min="0"
+            max="1"
+            step="0.01"
+            value="1"> <!-- Domyślnie maksymalna głośność -->
+        <span id="volumeValue">100</span>% <!-- Wyświetlanie wartości w procentach -->
+    </div>
+
+</body>
+<script>
+
+</script>
+</html>

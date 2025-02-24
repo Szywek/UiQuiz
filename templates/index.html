@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quiz Ustawienia</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <script src="{{ url_for('static', filename='js/scripts.js') }}" defer></script>
+</head>
+<body>
+    <div id="loading-screen" style="display: none;">
+    <img src="{{ url_for('static', filename='images/loading.gif') }}" alt="Loading" id="loading-image">
+    <p>Wczytywanie danych...</p>
+    </div>
+    <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo Quizu" id="quiz-logo">
+    <h1>Ustawienia qUIzu</h1>
+    <form id="settings-form">
+        <button type="button" id="start-game">Graj</button>
+        <br><br>
+        <label>
+            Sample:
+            <input type="radio" name="startOption" value="Start" checked> Start (1%)
+            <input type="radio" name="startOption" value="Middle"> Middle (50%)
+            <input type="radio" name="startOption" value="Random"> Random (10%-75%)
+        </label>
+        <br><br>
+    <h3>Wybierz typ utworu:</h3>
+        <label>
+            <input type="checkbox" id="type-opening" value="Opening"> Openingi
+        </label>
+        <label>
+            <input type="checkbox" id="type-ending" value="Ending"> Endingi
+        </label>
+        <br><br>
+        <h3>Opcje filtrowania czasu:</h3>
+<label>
+    <input type="checkbox" id="enable-vintage-filter"> Włącz podział na lata
+</label>
+<div id="vintage-filter-options" style="display: none;">
+    <label>
+        Od:
+        <select id="start-season">
+            <option value="Winter">Winter</option>
+            <option value="Spring">Spring</option>
+            <option value="Summer">Summer</option>
+            <option value="Fall">Fall</option>
+        </select>
+    </label>
+    <label>
+        <select id="start-year"></select>
+    </label>
+    <br>
+    <label>
+        Do:
+        <select id="end-season">
+            <option value="Winter">Winter</option>
+            <option value="Spring">Spring</option>
+            <option value="Summer">Summer</option>
+            <option value="Fall">Fall</option>
+        </select>
+    </label>
+    <label>
+        <select id="end-year"></select>
+    </label>
+</div>
+    </form>
+
+
+</body>
+</html>

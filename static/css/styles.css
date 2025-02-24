@@ -1,0 +1,321 @@
+/* Ogólne style */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #1a1a1a; /* Ciemne tło */
+    color: #e0e0e0; /* Jasny tekst */
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+#loading-screen {
+    position: fixed; /* Stała pozycja względem widoku */
+    top: 0;
+    left: 0;
+    width: 100vw; /* Pełna szerokość */
+    height: 100vh; /* Pełna wysokość */
+    background-color: rgb(26, 26, 26); /* Trochę ciemniejsze tło */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 99999; /* Bardzo wysoki indeks warstwy, aby być na wierzchu */
+    text-align: center;
+    color: #ffffff; /* Tekst w kolorze białym */
+    font-size: 22px;
+    max-width: 100vw;
+}
+
+#loading-screen img {
+    max-width: 400px; /* Maksymalna szerokość obrazka */
+    height: auto;
+}
+
+#quiz-logo {
+    display: block;
+    margin: 0 auto 0; /* Wyśrodkowanie obrazka i odstęp poniżej */
+    max-width: 150px; /* Maksymalna szerokość obrazka */
+    height: auto; /* Zachowanie proporcji przy zmianie rozmiaru */
+}
+h1 {
+    color: #ffffff; /* Biały nagłówek */
+    margin-bottom: 7px;
+    font-size: 32px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Efekt cienia */
+}
+
+/* Kontener dla formularzy i przycisków */
+form, div {
+
+    padding: 5px;
+    width: 100%;
+    max-width: 700px;
+    margin-bottom: 5px;
+    text-align: center;
+}
+btn-next {
+    justify-content: center;
+}
+
+/* Przyciski */
+button {
+    background-color: #3498db; /* Niebieski przycisk */
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 18px;
+    margin: 10px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+    background-color: #2980b9; /* Ciemniejszy niebieski po najechaniu */
+    transform: scale(1.05); /* Lekkie powiększenie */
+}
+
+button:active {
+    transform: scale(0.95); /* Lekkie pomniejszenie po kliknięciu */
+}
+
+button:disabled {
+    background-color: #ccc; /* Jasnoszary kolor dla nieaktywnych przycisków */
+    cursor: not-allowed; /* Kursor w stylu 'zablokowany' */
+    color: #777; /* Przyciemniony kolor tekstu */
+}
+
+/* Inputy typu range */
+input[type="range"] {
+    width: 15%;
+    margin: 15px 0;
+    background: #444; /* Ciemniejsze tło dla suwaka */
+    border-radius: 5px;
+    height: 8px;
+    outline: none;
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+}
+
+input[type="range"]:hover {
+    opacity: 1; /* Pełna widoczność po najechaniu */
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background: #3498db; /* Niebieski suwak */
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+input[type="range"]::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    background: #3498db; /* Niebieski suwak */
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+/* Etykiety */
+label {
+    font-weight: bold;
+    margin-right: 10px;
+    color: #e0e0e0; /* Jasny tekst */
+}
+
+/* Sekcja detali utworu */
+#details {
+    background-color: #2d2d2d; /* Ciemne tło */
+    padding: 30px;
+    border-radius: 15px;
+    margin-top: 1px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Ciemniejszy cień */
+    width: 100%;
+    max-width: 700px;
+    font-size: 20px;
+    line-height: 1.2;
+    text-align: left;
+}
+
+#details h3 {
+    margin-top: 0;
+    color: #ffffff; /* Biały nagłówek */
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 25px;
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Efekt cienia */
+}
+
+#details p {
+    margin: 15px 0;
+    font-size: 20px;
+    color: #e0e0e0; /* Jasny tekst */
+    padding: 10px 0;
+    border-bottom: 1px solid #444; /* Ciemniejsza linia oddzielająca */
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+#details p:last-child {
+    border-bottom: none; /* Usuń linię pod ostatnim elementem */
+}
+
+/* Licznik rund */
+#round-counter {
+    background-color: #1a1a1a;
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 25px;
+    text-align: center;
+    color: #ffffff; /* Biały tekst */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Efekt cienia */
+}
+
+/* Ekran ładowania */
+#loading-screen {
+    text-align: center;
+    font-size: 22px;
+    color: #ffffff; /* Biały tekst */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Efekt cienia */
+}
+
+/*Historia*/
+#history-panel {
+    position: fixed;
+    right: 20px; /* Pozycjonowanie na prawo od ekranu */
+    top: 100px; /* Pozycjonowanie poniżej góry ekranu */
+    background: rgba(255, 255, 255, 0.9); /* Półprzezroczyste białe tło */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Cień wokół panelu */
+    padding: 10px;
+    border: 1px solid #ccc; /* Szary obrys */
+    z-index: 1000;
+    max-height: calc(100vh - 150px); /* Dynamiczny limit wysokości */
+    max-width: calc(100vw - 75vw); /* Dynamiczny limit szerokości */
+    overflow: hidden; /* Ukrycie treści wychodzącej poza okno */
+    resize: both; /* Włączenie zmiany rozmiaru */
+    overflow: auto; /* Pozwolenie na przewijanie zawartości */
+}
+
+#history-panel h3 {
+    margin: 0 0 10px;
+    text-align: center;
+    font-size: 20px;
+    background: #444;
+    color: white;
+    padding: 10px;
+}
+
+#btn-toggle-history {
+    background: #3498db;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#btn-toggle-history:focus {
+    outline: none;
+}
+
+#btn-toggle-history:hover {
+    background: #2980b9;
+}
+/* Dla treści w panelu */
+#history-content {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    color: #222; /* Kolor tekstu */
+    border-radius: 5px;
+    padding: 10px;
+    overflow-y: auto;
+    height: calc(100% - 20px); /* Dynamiczne dopasowanie zawartości */
+    box-sizing: border-box; /* Marginesy nie wpływają na wymiary */
+}
+
+#history-content p {
+    margin: 2px 0;
+}
+
+/* Kolory dla różnych stanów w historii */
+.history-item { /* Domyślny styl każdej pozycji w historii */
+    background-color: rgba(255, 255, 255, 0.25); /* Białe tło */
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    padding: 8px;
+}
+
+.history-item.know { /* Stan: "Wiem" */
+    background-color: rgba(39, 174, 96, 0.52); !important; /* Zielony */
+    color: #000000; /* Jasny tekst */ !important;
+}
+
+.history-item.know-plus { /* Stan: "Wiem za 2" */
+    background-color: rgba(241, 196, 15, 0.56); !important;/* Żółty */
+    color: #000000; !important;/* Ciemny tekst */
+}
+
+.history-item.dont-know { /* Stan: "Nie wiem" */
+    background-color: rgba(231, 76, 60, 0.64); !important; /* Czerwony */
+    color: #000000; !important;/* Jasny tekst */
+}
+
+
+#know-result {
+    margin-top: 15px;
+    font-size: 40px;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+#click-counters {
+    position: fixed; /* Ustawienie pozycji jako stała */
+    top: 25%; /* Odstęp od góry strony */
+    left: 17vw; /* Odstęp od lewego brzegu strony */
+    background-color: #2d2d2d; /* Ciemne tło */
+    padding: 20px; /* Odstępy wewnętrzne */
+    border-radius: 10px; /* Zaokrąglone rogi */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Subtelny cień */
+    font-size: 20px;
+    font-weight: bold;
+    text-align: left; /* Wyrównanie tekstu do lewej */
+    z-index: 1000; /* Warstwa na wierzchu */
+    width: 200px; /* Stała szerokość */
+    display: inline-grid;
+}
+
+
+
+/* Responsywność */
+@media (max-width: 600px) {
+    body {
+        padding: 10px;
+    }
+
+    button {
+        width: 100%;
+        margin: 10px 0;
+    }
+
+    h1 {
+        font-size: 28px;
+    }
+
+    #details {
+        padding: 20px;
+    }
+
+    #details h3 {
+        font-size: 24px;
+    }
+
+    #details p {
+        font-size: 18px;
+    }
+}
