@@ -228,6 +228,7 @@ label {
 }
 /* Dla treści w panelu */
 #history-content {
+    background-color: #1a1a1a;
     font-family: Arial, sans-serif;
     font-size: 14px;
     color: #222; /* Kolor tekstu */

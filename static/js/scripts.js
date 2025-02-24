@@ -128,6 +128,7 @@ function setupQuizPage() {
 
     // Zmienna globalna do przechowywania start_time i fragmentLength
     let currentStartTime = 0; // Punkt początkowy odtwarzania fragmentu
+    let handleAudioTimeUpdate; // Referencja do funkcji obsługującej timeupdate
     let currentFragmentLength = 15; // Domyślna długość fragmentu
     let currentRound = 0; // Zaczynamy od 1. rundy
     // Zmienna do przechowywania historii odtworzonych utworów
@@ -187,7 +188,7 @@ function setupQuizPage() {
 
     // Obsługa przycisku "Dalej"
 function executeNextActions() {
-    const fragmentLength = parseInt(document.querySelector("#fragmentLength").value, 10); // Długość fragmentu
+
 
 
         knowResult.style.display = "show";
@@ -219,12 +220,16 @@ function executeNextActions() {
                         console.log("Odtwarzanie rozpoczęte:", currentStartTime);
 
                         // zatrzymywanie audio po określonym fragmencie
-                        setTimeout(() => {
-                            if (audioPlayer.currentTime >= currentStartTime + fragmentLength - 0.1) {
-                                audioPlayer.pause(); // Zatrzymaj odtwarzanie po fragmencie
+handleAudioTimeUpdate = function () {
+
+if (audioPlayer.currentTime >= currentStartTime + parseInt(document.querySelector("#fragmentLength").value, 10) - 0.1) {
+                                audioPlayer.pause();
                                 console.log("Fragment został w pełni odtworzony.");
+                                // Usuń nasłuchiwanie po zakończeniu fragmentu
+                                audioPlayer.removeEventListener("timeupdate", handleAudioTimeUpdate);
                             }
-                        }, fragmentLength * 1000); // Przekształć długość fragmentu na milisekundy
+                        };
+                        audioPlayer.addEventListener("timeupdate", handleAudioTimeUpdate);
                     })
                     .catch((error) => {
                         console.error("Błąd odtwarzania:", error);
@@ -264,21 +269,23 @@ function executeNextActions() {
 if (replayButton) {
     replayButton.addEventListener("click", () => {
         if (audioPlayer) {
-            const fragmentLength = parseInt(document.querySelector("#fragmentLength").value, 10); // Pobierz nową wartość
 
             console.log(`Powtórz utwór z obecnie ustawioną długością: ${fragmentLength} sekund.`);
 
-            audioPlayer.currentTime = currentStartTime; // Ustaw początkową wartość
-            audioPlayer.play(); // Rozpocznij odtwarzanie
+            // Usuń poprzednie nasłuchiwanie zdarzenia timeupdate
+            audioPlayer.removeEventListener("timeupdate", handleAudioTimeUpdate);
 
-            // Zakończenie odtwarzania po fragmencie
-            setTimeout(() => {
-                audioPlayer.pause();
-            }, fragmentLength * 1000); // Użycie nowej wartości fragmentLength
+            // Zresetuj czas odtwarzania dźwięku
+            audioPlayer.currentTime = currentStartTime;
+
+            // Rozpoczęcie odtwarzania
+            audioPlayer.play();
+
+            // Dodaj precyzyjne sterowanie fragmentem przez timeupdate
+audioPlayer.addEventListener("timeupdate", handleAudioTimeUpdate);
         }
     });
 }
-
     // Obsługa przycisku "Pokaż"
     if (showButton) {
         showButton.addEventListener("click", () => {
@@ -391,6 +398,7 @@ function toggleHistoryWindow() {
 
     // Obsługa suwaka długości fragmentu
     const fragmentLengthSlider = document.querySelector("#fragmentLength");
+
     const fragmentLengthValue = document.querySelector("#fragmentLengthValue");
 
     if (fragmentLengthSlider && fragmentLengthValue) {
