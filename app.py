@@ -4,6 +4,9 @@ import random
 from time import sleep
 import uniform
 import waitress
+from waitress import serve
+from threading import Timer
+import webbrowser
 
 app = Flask(__name__)
 
@@ -14,6 +17,9 @@ BASE_AUDIO_URL = "https://naedist.animemusicquiz.com/"
 shuffled_song_ids = []
 
 start_option = "Start"  # Domyślna wartość na wypadek, gdyby użytkownik nic nie wybrał
+
+def open_browser():
+    webbrowser.open("http://127.0.0.1:5000")  # Uruchomienie przeglądarki z określonym adresem
 
 # Funkcja pomocnicza do ładowania danych z pliku CSV
 def load_csv(file_path):
@@ -156,4 +162,5 @@ def play():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    Timer(1, open_browser).start()
+    serve(app, host='127.0.0.1', port=5000)

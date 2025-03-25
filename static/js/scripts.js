@@ -192,7 +192,7 @@ function executeNextActions() {
 
 
         knowResult.style.display = "show";
-
+        let isProcessingNext = false;
 
     fetch("/next", {
         method: "POST",
@@ -343,24 +343,29 @@ function toggleHistoryWindow() {
 
     // Funkcja aktualizująca zawartość okna
     function updateHistoryPanel() {
-        const historyContent = document.querySelector("#history-content");
-        if (songHistory.length === 0) {
-            historyContent.innerHTML = "<p>Brak danych do wyświetlenia</p>";
-        } else {
-            historyContent.innerHTML = songHistory
-                .map(
-                    (song) => `
-                        <div class="history-item">
-                            <p><strong>Runda ${song.round}: ${song.animeJPName}</strong></p>
-                            <p>Tytuł utworu: ${song.songName}</p>
-                            <p>Wykonawca: ${song.songArtist}</p>
-                            <p>Typ: ${song.songType}</p>
-                        </div>
-                    `
-                )
-                .join("");
-        }
+    const historyContent = document.querySelector("#history-content");
+
+    if (songHistory.length > 20) {
+        songHistory = songHistory.slice(-20); // Zachowaj tylko ostatnie 20 elementów
     }
+
+    if (songHistory.length === 0) {
+        historyContent.innerHTML = "<p>Brak danych do wyświetlenia</p>";
+    } else {
+        historyContent.innerHTML = songHistory
+            .map(
+                (song) => `
+                    <div class="history-item">
+                        <p><strong>Runda ${song.round}: ${song.animeJPName}</strong></p>
+                        <p>Tytuł utworu: ${song.songName}</p>
+                        <p>Wykonawca: ${song.songArtist}</p>
+                        <p>Typ: ${song.songType}</p>
+                    </div>
+                `
+            )
+            .join("");
+    }
+}
 
     // Obsługa przycisku historii
     document.querySelector("#btn-toggle-history").addEventListener("click", toggleHistoryWindow);
